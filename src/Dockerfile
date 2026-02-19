@@ -1,4 +1,4 @@
-
+# syntax=docker/dockerfile:1.7
 FROM python:3.12-slim
 
 # Upgrade pip and system packages to reduce vulnerabilities
@@ -21,8 +21,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the code
 COPY . .
 
-# Copy .env file into the image (for python-dotenv)
-COPY .env .env
+# Create .env from BuildKit secret (passed by CI)
+RUN --mount=type=secret,id=ENV cat /run/secrets/ENV > .env
 
 # Expose the port (default FastAPI/uvicorn port)
 EXPOSE 8000
