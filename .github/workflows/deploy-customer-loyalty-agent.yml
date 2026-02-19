@@ -42,5 +42,5 @@ jobs:
 
       - name: Run customer loyalty initializer
         run: |
-          cd ~/src
+          cd ~/TechWorkshop-L300-AI-Apps-and-agents/src
           python app/agents/customerLoyaltyAgent_initializer.py
